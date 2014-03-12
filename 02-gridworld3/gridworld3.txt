@@ -1,0 +1,59 @@
+PART 3: GRIDWORLD CLASSES AND INTERFACES
+
+(Set 3)
+
+1) By using the getRow() method.
+
+2) The value of b is false.
+
+3) The value of loc3 is now equal to Location(4,4)
+
+4) The value of dir is 315 degrees
+
+5) It takes an int as a parameter which represents which direction to go in.
+
+(Set 4)
+
+1) Count of the Objects can be obtained by the getValidAdjacentLocations() method. While a count of the empty locations can be obtained by the getEmptyAdjacentLocations() method.
+
+2) You can check for location (10,10) on the grid by isValid() method.
+
+3) No code is supplied in these methods because Grid is an interface it only declares them. Implementations of these methods can be found in the classes BoundedGrid<E> and UnboundedGrid<E>.
+
+4) An ArrayList is better for returning multiple objects because they have methods that allow you to easily work with its contents (add(), set(), remove()), while arrays are simple data structures that don't support these methods.
+
+(Set 5)
+
+1) Three Properties of every actor are color, direction, and location. 
+
+2) When an actor is constructed its default direction is 0, and its default color is blue.
+
+3) The Actor class was created as a class instead of an interface because the methods that it uses don't have to be used by other non-related classes, only subclasses.
+
+4) An actor must remove itself before putting itself in the grid twice. An actor cannot remove itself from a grid twice. An actor can be placed into a grid, removed, and then put back in. 
+
+5) An actor can turn 90 degress to the right by doing setDirection(getDirection() - 90).
+
+(Set 6)
+ 
+1) The statement that ensures it doesn't move off the grid is when it checks to see if its adjacent neighbor is null or not.
+
+2) The last line (return statement) ensures it does not move onto a rock because it only has permission to move if the neighbor is not null and either empty or a flower.
+
+3) The getGrid() method is invoked by the canMove() method to load the current grid.
+
+4) The getAdjacentLocation() method is invoked by the canMove() method to get the neighbor.
+
+5) The methods from the Actor class that are invoked in the canMove() method are the getDirection() method because the direction is required as a parameter  for the getAdjacentLocation() method.
+
+6) If the location immediately in front of the bug is out of the grid, it turns 45 degrees.
+
+7) The variable loc is not needed in the move method, and can be avoided by calling the getLocation() method multiple times in the same statement.
+
+8) Flowers that are dropped by a bug have the same color as the bug because their color is determined by the parent bug.
+
+9) When a bug removes itself from the grid it will not place a flower in the location.
+
+10) The last statement which says flower.putSelfInGrid(gr,loc) puts the flower in the grid at the bug's last location.
+
+11) If a bug needs to turn 180 degrees it would have to call the turn() method 4 times (each turn = 45 degees)
