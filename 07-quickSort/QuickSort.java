@@ -1,44 +1,40 @@
 import java.util.*;
 public class QuickSort{
 
-    public static Integer[] combine (Integer[] L, Integer[] less, int pivot, Integer[] large){
-	int i = 0;
-	for (; i < less.length; i++){
-	    L[i] = less[i];
-	}
-	L[i] = new Integer (pivot);
-	for (i = 0; i < large.length; i++){
-	    L[i + less.length + 1] = large[i];
-	}
-	return L;
+    public static void swap(int[] nums, int i1, int i2){
+	int temp = nums[i1];
+	nums[i1] = nums[i2];
+	nums[i2] = temp;
     }
 
-    public static Integer[] quickSort(Integer[] nums){
-	if (nums.length <= 1)
-	    return nums;
-	int p = (int)(Math.random() * nums.length);
+    public static void quickSortHelp (int[] nums, int low, int high){
+	if (low >= high)
+	    return;
+	int p = low + (int)(Math.random() * (high+1-low));
 	int pivot = nums[p];
-	ArrayList<Integer> less = new ArrayList<Integer>();
-	ArrayList<Integer> large = new ArrayList<Integer>();
-	for (int i = 0; i < nums.length; i++){
-	    if (i == p){}
-	    else if (nums[i] < pivot)
-		less.add(nums[i]);
-	    else
-		large.add(nums[i]);
+	swap(nums, p, high);
+	int n = low;
+	for (int i = low; i < high; i++){
+	    if (nums[i] <= pivot){
+		swap(nums, n, i);
+		n++;
+	    }
 	}
-	Integer[] left = less.toArray(new Integer[less.size()]);
-	Integer[] right = large.toArray(new Integer[large.size()]);
-	left = quickSort(left);
-	right = quickSort(right);
-	return combine(nums, left, pivot,right);
+	swap(nums, n, high);
+	quickSortHelp(nums, low, n-1);
+	quickSortHelp(nums, n+1, high);
     }
     
+    public static void quickSort(int[] nums){
+	quickSortHelp(nums, 0, nums.length-1);
+    }
     public static void main(String[]args){
-	Integer[] test = new Integer[15];
+	int[] test = new int[15];
 	for (int i = 0; i < test.length; i++){
-	    test[i] = (int)(Math.random() * 30);
+	    test[i] = (int)(Math.random() * 20);
 	}
-	System.out.println(Arrays.toString(test) + "\n" + Arrays.toString(quickSort(test)));
+	System.out.println(Arrays.toString(test));
+	quickSort(test);
+	System.out.println(Arrays.toString(test));
     }
 }
