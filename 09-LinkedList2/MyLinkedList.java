@@ -2,24 +2,25 @@ public class MyLinkedList{
     private Node head;
     
     public MyLinkedList(){
-	head = new Node("dummy");
+	head = new Node("dummyHead");
     }
 
     public void add(String s){
-	Node tmp = new Node(s);
-	tmp.setNext(head.getNext()); //adds nodes to the start of the list
-	head.setNext(tmp);
+	Node thing = new Node(s);
+	Node tmp = head;
+	while (tmp.getNext() != null){
+	    tmp = tmp.getNext();
+	}
+	tmp.setNext(thing);
     }
-
     public String toString(){
 	Node tmp = head.getNext();
 	String str = "[";
-	while (true){
- 	    if (tmp == null)
-		return str + "]";
+	while (tmp != null){
 	    str += tmp.toString() + " ";
 	    tmp = tmp.getNext();
 	}
+	return str + "]";
     }
     public void add (int i, String s){
 	Node thing = new Node(s);
@@ -48,10 +49,10 @@ public class MyLinkedList{
 	    tmp = tmp.getNext();
 	    i--;
 	}
-	Node tmp2 = tmp.getNext();
+	String data = tmp.getNext().getData();
 	thing.setNext(tmp.getNext().getNext());
 	tmp.setNext(thing);
-	return tmp2.getData();
+	return data;
     }
 
     public String remove (int i){
@@ -60,40 +61,38 @@ public class MyLinkedList{
 	    tmp = tmp.getNext();
 	    i--;
 	}
-	Node tmp2 = tmp.getNext();
+	String data = tmp.getNext().getData();
 	tmp.setNext(tmp.getNext().getNext());
-	return tmp2.getData();
+	return data;
     }
 
     public int length(){
 	int i = 0;
 	Node tmp = head.getNext();
-	while(true){
-	    if (tmp == null)
-		return i;
+	while (tmp != null){
 	    i++;
 	    tmp = tmp.getNext();
 	}
+	return i;	
     }
 
     public int find (String s){
 	int i = 0;
 	Node tmp = head.getNext();
-	while (true){
-	    if (tmp.getData().equals(s))
-		return i;
+	while (!tmp.getData().equals(s)){
 	    i++;
 	    tmp = tmp.getNext();
 	}
+	return i;
     }
 
     public static void main(String[]args){
 	MyLinkedList L = new MyLinkedList();
-	L.add("E");
-	L.add("D");
-	L.add("C");
-	L.add("B");
 	L.add("A");
+	L.add("B");
+	L.add("C");
+	L.add("D");
+	L.add("E");
 	System.out.println(L);
 	/*L.add(0,"Q");
 	  System.out.println(L.set(0,"Q"));
