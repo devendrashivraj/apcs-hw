@@ -1,4 +1,4 @@
-//Devendra Shivraj and Eric Cheang
+//Devendra Shivraj & Eric Cheang
 public class DoubleLL<E>{
 
     private class Node<E>{
@@ -31,21 +31,68 @@ public class DoubleLL<E>{
 	}
     }
     private Node<E> current;
-    
+    private int length;
+   
     public void insert (E d){
 	Node<E> n = new Node<E>(d);
+	if(current == null){
+	    current = n;
+	    return;
+	}
+	Node<E> thing1 = current,thing2 = current;
+	int i = 0;
+	while (thing1.getPrev() != null &&
+	       i < length){
+	    thing1 = thing1.getPrev();
+	    i++;
+	}
+	i = 0;
+	while (thing2.getNext() != null &&
+	       i < length){
+	    thing2 = thing2.getNext();
+	    i++;
+	}
+	thing2.setNext(thing1);
+	thing1.setPrev(thing2);
 	if(current == null)
 	    current = n;
-	else{
-	    n.next = current;
-	    if (current.getPrev() != null)
-		current.prev.next = n;
-	    n.setPrev(current.getPrev());
-	    current = n;
-	}
+	n.next = current;
+	if (current.getPrev() != null)
+	    current.prev.next = n;
+	n.setPrev(current.getPrev());
+	current = n;
+	length += 1;
     }
     public E getCurrent(){
 	return current.getData();
+    }
+    
+    public void delete(){
+	//removes the currentNode
+	if (current == null)
+	    return;
+	Node<E> thing = current.getNext();
+	current.getPrev().setNext(current.getNext());
+	current = thing;
+    }
+
+    public int find (String s){
+	int  i = 0;
+	Node<E> thing = current;
+	while (thing.getPrev() != null &&
+	       i < length){
+	    thing = thing.getPrev();
+	    i++;
+	}
+	i = 0;
+	while (thing.getNext() != null &&
+	       i < length){
+	    if (thing.getData().equals(s))
+		return i;
+	    thing = thing.getNext();
+	    i++;
+	}
+	return -1;
     }
 
     public void forward(){
@@ -62,13 +109,20 @@ public class DoubleLL<E>{
     public String toString(){
 	if (current == null)
 	    return "";
-	while (current.getPrev() != null)
-	    current = current.getPrev();
-	Node<E> tmp = current;
-	String s = "";
-	while (tmp != null){
-	    s += tmp.getData() + " ";
-	    tmp = tmp.getNext();
+	Node<E> thing = current;
+	int listCounter = 0; 
+	while (thing.getPrev() != null &&
+	       listCounter < length){
+	    thing = thing.getPrev();
+	    listCounter++;
+	}
+    	String s = "";
+	listCounter = 0;
+	while (thing != null &&
+	       listCounter < length){
+	    s += thing.getData() + " ";
+	    thing = thing.getNext();
+	    listCounter++;
 	}
 	return s;
     }
@@ -87,6 +141,12 @@ public class DoubleLL<E>{
 	System.out.println(L.getCurrent());
 	L.insert("inserted");
 	System.out.println(L);
+	System.out.println(L.length);
+	System.out.println(L.getCurrent());
+	L.delete();
+	System.out.println(L);
+	System.out.println(L.find("world"));
+	System.out.println(L.find("monster"));//should give you -1 (not in the list)
     }
 }
 
