@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 //Devendra Shivraj & Eric Cheang
->>>>>>> a8561bc46882d4e66d8d1e55433d3c264364fa7e
 public class DoubleLL<E>{
 
     private class Node<E>{
@@ -13,7 +10,7 @@ public class DoubleLL<E>{
 	public String toString(){
 	    return "" + data;
 	}
-	
+
 	public void setData (E d){
 	    data = d;
 	}
@@ -32,24 +29,10 @@ public class DoubleLL<E>{
 	public Node<E> getPrev(){
 	    return prev;
 	}
-    }
+}
     private Node<E> current;
-<<<<<<< HEAD
-    
-    public void insert (E d){
-	Node<E> n = new Node<E>(d);
-	if(current == null)
-	    current = n;
-	else{
-	    n.next = current;
-	    if (current.getPrev() != null)
-		current.prev.next = n;
-	    n.setPrev(current.getPrev());
-	    current = n;
-	}
-=======
     private int length;
-   
+
     public void insert (E d){
 	Node<E> n = new Node<E>(d);
 	if(current == null){
@@ -79,14 +62,11 @@ public class DoubleLL<E>{
 	n.setPrev(current.getPrev());
 	current = n;
 	length += 1;
->>>>>>> a8561bc46882d4e66d8d1e55433d3c264364fa7e
     }
     public E getCurrent(){
 	return current.getData();
     }
-<<<<<<< HEAD
-=======
-    
+
     public void delete(){
 	//removes the currentNode
 	if (current == null)
@@ -114,7 +94,6 @@ public class DoubleLL<E>{
 	}
 	return -1;
     }
->>>>>>> a8561bc46882d4e66d8d1e55433d3c264364fa7e
 
     public void forward(){
 	if (current.getNext() != null){
@@ -131,28 +110,19 @@ public class DoubleLL<E>{
 	if (current == null)
 	    return "";
 	Node<E> thing = current;
-<<<<<<< HEAD
-	while (thing.getPrev() != null)
-	    thing = thing.getPrev();
-	String s = "";
-	while (thing != null){
-	    s += thing.getData() + " ";
-	    thing = thing.getNext();
-=======
 	int listCounter = 0; 
 	while (thing.getPrev() != null &&
 	       listCounter < length){
 	    thing = thing.getPrev();
 	    listCounter++;
 	}
-    	String s = "";
+	String s = "";
 	listCounter = 0;
 	while (thing != null &&
 	       listCounter < length){
 	    s += thing.getData() + " ";
 	    thing = thing.getNext();
 	    listCounter++;
->>>>>>> a8561bc46882d4e66d8d1e55433d3c264364fa7e
 	}
 	return s;
     }
@@ -171,17 +141,11 @@ public class DoubleLL<E>{
 	System.out.println(L.getCurrent());
 	L.insert("inserted");
 	System.out.println(L);
-<<<<<<< HEAD
-=======
 	System.out.println(L.length);
 	System.out.println(L.getCurrent());
 	L.delete();
 	System.out.println(L);
 	System.out.println(L.find("world"));
 	System.out.println(L.find("monster"));//should give you -1 (not in the list)
->>>>>>> a8561bc46882d4e66d8d1e55433d3c264364fa7e
     }
 }
-
-
-
