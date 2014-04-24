@@ -1,0 +1,47 @@
+GRIDWORLD PART 4: Interacting Objects
+
+SET 7
+
+1) The methods implemented in Critter are getActors(), processActors(), getMoveLocations(), selectMoveLocation(), and makeMove().
+
+2) The five basic actions common to all critters when they act are getting the actors near them, seeing which ones are not rocks and flowers, seeing where it can move, selecting a random place to move, and then moving there.
+
+3) Yes, because different critters may only be able to access/moveTo certain neighbors (orthogonal, all, diagonal).
+
+4) Three ways that a critter can process actors: is by removing it from the grid, leaving it in the grid, and passing the actor onto the next step of getting move locations.
+
+5) Three methods to make critter move: getMoveLocations(), selectMoveLocation(), and makeMove().
+
+6) There is no critter constructor, because different critters will have different attributes to it that require their own constructor (you can't just be a generic critter).
+
+SET 8
+
+1) Eventhough the act methods are not overrided in any of the subclasses, they still act differently, because the act method calls upon 5 helper methods which have been overrided differently.
+
+2) makeMove() calls super.makeMove(), because instead of rewriting the same code over again, you can call the super method, so that it guarantees you're left with the same post conditions.
+
+3) This could be done, by recalling the currentLocation of the chameleon before it moves, and then placing a flower there afterwards.
+
+4) The getActors() method is not overrided because there is no need to do so, the chameleon doesn't look at specific neighbors, it looks at all of them.
+
+5) The class that contains the getLocation() is the Actor class.
+
+6) A Critter can access its own grid by calling its super.getGrid() method.
+
+SET 9
+
+1) CrabCritter does not need to override the processActors() method because it processes critters the same way as th default critter does. 
+
+2) A CrabCritter looks to eat actors that are not critters or rocks, and instead eats whatever is found in the locations in its front, right-front, and left-front, picking one randomly.
+
+3) The getLocationsInDirections() method is used to figure out what the locations are of a certain section of a grid given the location from the current actor.
+
+4) Possible locations for actors that are returned by a call to the getActors() method are (4,3), (4,4), and (4,5)
+
+5) Similarties: They're similar because they choose randomly fron a set of locations where to move.
+   Differences: CrabCritter only moves front, front-left, and front right, while critters can move in any directions.
+ 
+6) A CrabCritter object decides to turn instead of moving if it is in danger of moving to a null location on the grid.
+
+7) CrabCritter objects can't eat each other, because there is a built-in restriction in the super class, Critter.
+
