@@ -1,1 +1,0 @@
-I used first period APCS to study for my AP US History Exam.
